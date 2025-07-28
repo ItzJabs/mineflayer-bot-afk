@@ -8,9 +8,9 @@ app.get("/", (req, res) => res.send("Bot de Jabs está activo 🚀"));
 app.listen(PORT, () => console.log(`🌐 Web activa en el puerto ${PORT}`));
 
 const bot = mineflayer.createBot({
-  host: "cuis.aternos.host", // Asegúrate que este host y puerto estén actualizados
+  host: "clingfish.aternos.host", // Asegúrate que este host y puerto estén actualizados
   port: 50983,
-  username: "LUKUMAN", // Cambia si lo deseas
+  username: "Servercito_24h", // Cambia si lo deseas
   auth: "offline",
   version: "1.20.4",
 });
