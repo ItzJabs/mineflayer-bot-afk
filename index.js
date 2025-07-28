@@ -1,49 +1,24 @@
 const mineflayer = require("mineflayer");
 const express = require("express");
 
-// 🌐 Web para UptimeRobot
 const app = express();
 app.get("/", (req, res) => res.send("Bot de Jabs está activo 🚀"));
-
-// ✅ Esta línea usa el puerto correcto para que Replit lo exponga
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🌐 Web activa en el puerto ${PORT}`));
+app.listen(10000, () => console.log("🌐 Web activa en el puerto 10000"));
 
 const bot = mineflayer.createBot({
-  host: "cuis.aternos.host",
+  host: "Itzzrealserver.aternos.me",
   port: 50983,
-  username: "MasterChief",
+  username: "Aternos24_7", // puedes cambiar si está baneado
   auth: "offline",
-  version: "1.20.4", // Ajusta si cambias la versión del server
+  version: "1.20.4", // asegúrate que coincida con tu server
 });
 
 bot.on("spawn", () => {
   console.log("✅ Bot conectado");
   bot.chat("¡Listo para patrullar!");
-
-  let forward = true;
-
-  function patrullar() {
-    bot.setControlState("forward", true);
-    bot.setControlState("jump", true);
-
-    setTimeout(() => {
-      bot.setControlState("forward", false);
-      bot.setControlState("jump", false);
-
-      setTimeout(() => {
-        bot.look(bot.entity.yaw + Math.PI, 0, true);
-        forward = !forward;
-        setTimeout(patrullar, 1000);
-      }, 2000);
-    }, 5000);
-  }
-
-  patrullar();
 });
 
-// 🧠 Capturar razón del kick
-bot.on("kicked", (reason, loggedIn) => {
+bot.on("kicked", (reason) => {
   console.log("🤔 Bot fue expulsado:", reason);
 });
 
