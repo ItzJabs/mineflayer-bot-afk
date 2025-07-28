@@ -10,14 +10,14 @@ app.listen(PORT, () => console.log(`🌐 Web activa en el puerto ${PORT}`));
 const bot = mineflayer.createBot({
   host: "cuis.aternos.host", // Asegúrate que este host y puerto estén actualizados
   port: 50983,
-  username: "Servidor24_7", // Cambia si lo deseas
+  username: "MasterChief", // Cambia si lo deseas
   auth: "offline",
   version: "1.20.4",
 });
 
 bot.on("spawn", () => {
   console.log("✅ Bot conectado");
-  bot.chat("¡Listo para patrullar!");
+  bot.chat("¡Listo para Mantener el Server!");
 
   function patrullar() {
     bot.setControlState("forward", true);
@@ -41,9 +41,11 @@ bot.on("spawn", () => {
 });
 
 // Captura errores y desconexiones
+bot.on("error", (err) => console.log("❌ Error:", err));
+bot.on("end", () => console.log("🚫 Bot desconectado"));
 bot.on("kicked", (reason) => {
   console.log("🤔 Bot fue expulsado:", reason);
 });
-bot.on("error", (err) => console.log("❌ Error:", err));
-bot.on("end", () => console.log("🚫 Bot desconectado"));
+bot.on("login", () => console.log("🔐 Login correcto"));
+bot.on("message", (msg) => console.log("💬 Chat:", msg.toString()));
 
