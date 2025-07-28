@@ -10,7 +10,7 @@ app.listen(PORT, () => console.log(`🌐 Web activa en el puerto ${PORT}`));
 const bot = mineflayer.createBot({
   host: "cuis.aternos.host", // Asegúrate que este host y puerto estén actualizados
   port: 50983,
-  username: "MasterChief", // Cambia si lo deseas
+  username: "LUKUMAN", // Cambia si lo deseas
   auth: "offline",
   version: "1.20.4",
 });
