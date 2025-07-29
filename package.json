@@ -13,7 +13,7 @@
     "express": "^4.18.2",
     "mineflayer": "^4.4.0",
     "mineflayer-auto-eat": "^2.1.0",
-    "mineflayer-pathfinder": "^2.4.5",
+    "mineflayer-pathfinder": "^2.4.4",
     "mineflayer-pvp": "^1.13.1"
   }
 }
