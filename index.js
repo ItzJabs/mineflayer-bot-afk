@@ -11,7 +11,7 @@ app.listen(PORT, () => console.log(`🌐 Web activa en el puerto ${PORT}`));
 const config = {
   host: "Itzzrealserver.aternos.me", // Asegúrate que este host esté actualizado
   port: 50983,
-  username: "Servercito_24h", // Cambia si lo deseas
+  username: "Servercito_24h_2"", // Cambia si lo deseas
   auth: "offline",
   version: "1.20.4",
 };
