@@ -7,17 +7,26 @@ const PORT = process.env.PORT || 10000;
 app.get("/", (req, res) => res.send("Bot de Jabs está activo 🚀"));
 app.listen(PORT, () => console.log(`🌐 Web activa en el puerto ${PORT}`));
 
-const bot = mineflayer.createBot({
-  host: "Itzzrealserver.aternos.me", // Asegúrate que este host y puerto estén actualizados
+// ⚙️ Configuración del bot
+const config = {
+  host: "Itzzrealserver.aternos.me", // Asegúrate que este host esté actualizado
   port: 50983,
   username: "Servercito_24h", // Cambia si lo deseas
   auth: "offline",
   version: "1.20.4",
-});
+};
 
-bot.on("spawn", () => {
-  console.log("✅ Bot conectado");
-  bot.chat("¡Listo para Mantener el Server!");
+let bot;
+
+function iniciarBot() {
+  bot = mineflayer.createBot(config);
+
+  bot.on("spawn", () => {
+    console.log("✅ Bot conectado");
+    bot.chat("¡Listo para Mantener el Server!");
+
+    patrullar();
+  });
 
   function patrullar() {
     bot.setControlState("forward", true);
@@ -37,15 +46,22 @@ bot.on("spawn", () => {
     }, 5000);
   }
 
-  patrullar();
-});
+  bot.on("error", (err) => {
+    console.log("❌ Error:", err);
+  });
 
-// Captura errores y desconexiones
-bot.on("error", (err) => console.log("❌ Error:", err));
-bot.on("end", () => console.log("🚫 Bot desconectado"));
-bot.on("kicked", (reason) => {
-  console.log("🤔 Bot fue expulsado:", reason);
-});
-bot.on("login", () => console.log("🔐 Login correcto"));
-bot.on("message", (msg) => console.log("💬 Chat:", msg.toString()));
+  bot.on("end", () => {
+    console.log("🚫 Bot desconectado. Reiniciando en 10s...");
+    setTimeout(() => process.exit(1), 10000); // Render lo reinicia
+  });
+
+  bot.on("kicked", (reason) => {
+    console.log("🤔 Bot fue expulsado:", reason);
+  });
+
+  bot.on("login", () => console.log("🔐 Login correcto"));
+  bot.on("message", (msg) => console.log("💬 Chat:", msg.toString()));
+}
+
+iniciarBot();
 
